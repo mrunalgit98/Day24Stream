@@ -3,6 +3,7 @@ package com.stream;
 
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
@@ -32,11 +33,20 @@ public class Main {
         Scanner sc=new Scanner(System.in);
         System.out.println("enter first name to check duplicate");
         String name1=sc.nextLine();
-        Stream<AddressSystem> check=list.stream()
+        Stream<AddressSystem> check=list.stream()  //optional oftype boolean duplicate
                 .filter(i->i.getFirstName()
-                .equals(name1));
+                        .equals(name1));
         check.forEach(str-> System.out.println("duplicate present"));
 
+    }
+    public void searchByCity() {
+        List<AddressSystem> collect = list.stream()
+                .filter(p -> p.getCity()
+                .equalsIgnoreCase(p.getCity()))
+                .collect(Collectors.toList());
+        for (AddressSystem contact : collect) {
+            System.out.println("Search result: " + contact +collect);
+        }
     }
 
 
@@ -50,8 +60,8 @@ public class Main {
         book1.AddContactsDetails();
         book2.AddContactsDetails();
 
-       book1.checkDuplicate();
-
+        //book1.checkDuplicate();
+        book1.searchByCity();
 
     }
 
