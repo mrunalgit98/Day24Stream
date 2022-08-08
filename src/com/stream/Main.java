@@ -45,9 +45,19 @@ public class Main {
                 .equalsIgnoreCase(p.getCity()))
                 .collect(Collectors.toList());
         for (AddressSystem contact : collect) {
-            System.out.println("Search result: " + contact +collect);
+            System.out.println("Search result:  Firstname - " + contact.getFirstName() +"lastname " + contact.getLastName()+" city " + contact.getCity()+"phone number" +contact.getPhoneNumber());
         }
     }
+    public void contactsCount() {
+        System.out.println("Enter Name of City to get count of Contacts across city ");
+        Scanner scan=new Scanner(System.in);
+        String nameCityState = scan.next();
+        var wrapper = new Object() {int count=0;};
+        list.stream().filter(contactList -> contactList.getCity().equals(nameCityState));
+        wrapper.count++;
+        System.out.println("Number of contact persons in "+nameCityState+" is : "+wrapper.count);
+    }
+
 
 
     public static void main(String[] args) {
@@ -61,8 +71,9 @@ public class Main {
         book2.AddContactsDetails();
 
         //book1.checkDuplicate();
-        book1.searchByCity();
-
+       // book1.searchByCity();
+//    book1.getPersonNameByCity();
+        book1.contactsCount();
     }
 
 
